@@ -16,13 +16,20 @@ db.once('open', () => {
   console.log('Connection established')
 })
 
+//Use cors
+const cors = require('cors')
+app.use(cors())
+
 //Use body parser
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-//Route
+//Routes
 const product_router = require('./routes/product.route')
 app.use('/products', product_router)
+
+const product_type_router = require('./routes/productType.route')
+app.use('/productTypes', product_type_router)
 
 //Errors
 app.use((req, resp) => {
