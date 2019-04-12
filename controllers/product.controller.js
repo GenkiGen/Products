@@ -11,7 +11,8 @@ module.exports.add_product = (req, resp) => {
     name: req.body.name,
     price: req.body.price,
     productType: req.body.productType,
-    description: req.body.description
+    description: req.body.description,
+    imageUrl: req.body.imageUrl
   })
 
   new_record.save((error, product) => {
@@ -66,7 +67,8 @@ module.exports.update_one = (req, resp) => {
     name: req.body.name,
     price: req.body.price,
     productType: req.body.productType,
-    description: req.body.description
+    description: req.body.description,
+    imageUrl: req.body.imageUrl
   }, (error, res) => {
     if (error) {
       resp.status(400)
