@@ -1,5 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 
 const app = express()
 const port = process.env.PORT || 3000
@@ -15,6 +16,15 @@ db.once('open', () => {
   console.log('Connection established')
 })
 
+//Use body parser
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
+//Route
+const product_router = require('./routes/product.route')
+app.use('/products', product_router)
+
+//Errors
 app.use((req, resp) => {
   resp.status(400)
   resp.type("text/plain")
